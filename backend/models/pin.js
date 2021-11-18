@@ -7,6 +7,12 @@ const PinSchema = new mongoose.Schema(
             require: true,
             min: 3
         },
+        title: {
+            type: String,
+            required: true,
+            min: 3,
+            max: 60,
+          },
         desc: {
             type: String, 
             required: true,
@@ -25,7 +31,7 @@ const PinSchema = new mongoose.Schema(
         long:{
             type: Number,
             require: true
-        }
+        },
     },
 {timestamps: true}
 );
