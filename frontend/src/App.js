@@ -9,6 +9,7 @@ function App() {
   const currentUser = "Linh";
   const [pins, setPins] = useState([]);
   const [currentPlaceId, setCurrentPlaceId] = useState(null);
+  const [newPlace, setNewtPlace] = useState(null);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -29,8 +30,17 @@ function App() {
     getPins();
   }, []);
 
-  const handleMarketClick = (id) => {
+  const handleMarketClick = (id, lat, long) => {
     setCurrentPlaceId(id);
+    setViewport({ ...viewport, latitude: lat, longitude: long });
+  };
+
+  const handleAddClick = (e) => {
+    const [long, lat] = e.lngLat;
+    setNewtPlace({
+      lat: lat,
+      long: long,
+    });
   };
 
   return (
@@ -40,6 +50,8 @@ function App() {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         mapStyle="mapbox://styles/ngoclinhtt/ckw3zuiri03sz14nukderqm1q"
+        onDblClick={handleAddClick}
+        transitionDuration="300"
       >
         {pins.map((p, index) => (
           <div key={index} className="pin">
@@ -55,7 +67,7 @@ function App() {
                   color: p.username === currentUser ? "tomato" : "slateblue",
                   cursor: "pointer",
                 }}
-                onClick={() => handleMarketClick(p._id)}
+                onClick={() => handleMarketClick(p._id, p.lat, p.long)}
               />
             </Marker>
             {p._id === currentPlaceId && (
@@ -90,6 +102,36 @@ function App() {
             )}
           </div>
         ))}
+        {newPlace && (
+          <Popup
+            latitude={newPlace.lat}
+            longitude={newPlace.long}
+            closeButton={true}
+            closeOnClick={false}
+            anchor="left"
+            onClose={() => setNewtPlace(null)}
+          >
+            <div>
+              <form>
+                <label>Title</label>
+                <input placeholder="Enter a title" />
+                <label>Review</label>
+                <textarea placeholder="Say us something about this place." />
+                <label>Rating</label>
+                <select>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <button className="submitButton" type="submit">
+                  Add New Pin
+                </button>
+              </form>
+            </div>
+          </Popup>
+        )}
       </ReactMapGL>
     </div>
   );
