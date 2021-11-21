@@ -34,9 +34,11 @@
 .success {
   color: rgb(39, 177, 39);
   font-size: 12px;
+  text-align: center;
 }
 
 .failure {
   color: rgb(240, 21, 21);
   font-size: 12px;
+  text-align: center;
 }
