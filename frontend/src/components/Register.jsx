@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import "./Register.css";
 
-function Register() {
+function Register({ setShowRegister }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const nameRef = useRef();
@@ -48,6 +48,10 @@ function Register() {
           </span>
         )}
       </form>
+      <Cancel
+        className="registerCancel"
+        onClick={() => setShowRegister(false)}
+      />
     </div>
   );
 }

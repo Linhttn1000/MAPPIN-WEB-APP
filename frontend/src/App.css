@@ -75,6 +75,7 @@ textarea::placeholder {
 
 .login {
   background-color: rgb(34, 52, 151);
+  margin-right: 10px;
 }
 
 .register {

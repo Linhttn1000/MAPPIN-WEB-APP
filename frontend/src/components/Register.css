@@ -29,6 +29,7 @@
   border-radius: 5px;
   color: #fff;
   background: slateblue;
+  cursor: pointer;
 }
 
 .success {
@@ -41,4 +42,11 @@
   color: rgb(240, 21, 21);
   font-size: 12px;
   text-align: center;
+}
+
+.registerCancel {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
 }
