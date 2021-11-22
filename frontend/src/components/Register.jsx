@@ -36,7 +36,9 @@ function Register({ setShowRegister }) {
         <input type="text" placeholder="Username" ref={nameRef} />
         <input type="email" placeholder="Email" ref={emailRef} />
         <input type="password" placeholder="Password" ref={passwordRef} />
-        <button className="registerBtn">Register</button>
+        <button className="registerBtn" type="submit">
+          Register
+        </button>
         {success && (
           <span className="success">
             Successfully registered. You can login now.
@@ -55,5 +57,4 @@ function Register({ setShowRegister }) {
     </div>
   );
 }
-
 export default Register;

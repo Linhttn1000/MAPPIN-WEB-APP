@@ -177,8 +177,14 @@ function App() {
             </button>
           </div>
         )}
-        {showRegister && <Register setShowRegister={showRegister} />}
-        {showLogin && <Login setShowLogin={showLogin} myStorage={myStorage} />}
+        {showRegister && <Register setShowRegister={setShowRegister} />}
+        {showLogin && (
+          <Login
+            setShowLogin={setShowLogin}
+            myStorage={myStorage}
+            setCurrentUser={setCurrentUser}
+          />
+        )}
       </ReactMapGL>
     </div>
   );
