@@ -18,6 +18,7 @@ function App() {
   const [rating, setRating] = useState(0);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [deletePin, setDeletePin] = useState(false);
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
@@ -36,7 +37,7 @@ function App() {
       }
     };
     getPins();
-  }, []);
+  }, [deletePin]);
 
   const handleMarketClick = (id, lat, long) => {
     setCurrentPlaceId(id);
@@ -74,6 +75,20 @@ function App() {
   const handleLogout = () => {
     myStorage.removeItem("user");
     setCurrentUser(null);
+  };
+
+  const handleDeletePin = async (pin) => {
+    try {
+      let user = myStorage.getItem("user");
+      if (pin.username === user) {
+        await axios.delete(`/pins/${user}`);
+        setDeletePin(true);
+      } else {
+        alert("Can't delete Pin!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -126,6 +141,20 @@ function App() {
                     Created by <b>{p.username}</b>
                   </span>
                   <span className="date">{format(p.createdAt)}</span>
+                  <div className="buttonss">
+                    <button
+                      className="button delete"
+                      onClick={() => handleDeletePin(p)}
+                    >
+                      Delete Pin
+                    </button>
+                    <button
+                      className="button update"
+                      onClick={() => setShowLogin(true)}
+                    >
+                      Update
+                    </button>
+                  </div>
                 </div>
               </Popup>
             )}

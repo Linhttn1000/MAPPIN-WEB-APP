@@ -82,6 +82,15 @@ textarea::placeholder {
   background-color: rgb(83, 115, 182);
 }
 
+.delete {
+  background-color: rgb(140, 55, 252);
+}
+
+.update {
+  background-color: rgb(140, 55, 252);
+  margin-left: 10px;
+}
+
 .buttons,
 .logout {
   position: absolute;
