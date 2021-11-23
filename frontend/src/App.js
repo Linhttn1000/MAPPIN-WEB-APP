@@ -89,6 +89,7 @@ function App() {
     } catch (error) {
       console.log(error);
     }
+    //console.log(pin);
   };
 
   return (
@@ -97,7 +98,7 @@ function App() {
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
-        mapStyle="mapbox://styles/ngoclinhtt/ckw3zuiri03sz14nukderqm1q"
+        mapStyle="mapbox://styles/ngoclinhtt/ckwazpyvp6qyn15p1i8ygg84a"
         onDblClick={handleAddClick}
         transitionDuration="300"
       >
@@ -112,7 +113,8 @@ function App() {
               <Room
                 style={{
                   fontSize: viewport.zoom * 7,
-                  color: p.username === currentUser ? "tomato" : "slateblue",
+                  color:
+                    p.username === currentUser ? "tomato" : "rgb(236, 252, 95)",
                   cursor: "pointer",
                 }}
                 onClick={() => handleMarketClick(p._id, p.lat, p.long)}
@@ -147,12 +149,6 @@ function App() {
                       onClick={() => handleDeletePin(p)}
                     >
                       Delete Pin
-                    </button>
-                    <button
-                      className="button update"
-                      onClick={() => setShowLogin(true)}
-                    >
-                      Update
                     </button>
                   </div>
                 </div>

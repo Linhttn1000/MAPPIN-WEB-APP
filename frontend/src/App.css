@@ -8,9 +8,9 @@
 
 label {
   width: max-content;
-  color: pink;
+  color: rgb(145, 179, 241);
   font-size: 13px;
-  border-bottom: 0.5px solid pink;
+  border-bottom: 0.5px solid rgb(145, 179, 241);
   margin: 3px 0;
 }
 
@@ -74,21 +74,16 @@ textarea::placeholder {
 }
 
 .login {
-  background-color: rgb(34, 52, 151);
+  background-color: rgb(145, 179, 241);
   margin-right: 10px;
 }
 
 .register {
-  background-color: rgb(83, 115, 182);
+  background-color: rgb(145, 179, 241);
 }
 
 .delete {
-  background-color: rgb(140, 55, 252);
-}
-
-.update {
-  background-color: rgb(140, 55, 252);
-  margin-left: 10px;
+  background-color: rgb(72, 112, 199);
 }
 
 .buttons,

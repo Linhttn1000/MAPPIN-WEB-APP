@@ -1,0 +1,92 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "description" : "This is a sample Petstore server.  You can find\nout more about Swagger at\n[http://swagger.io](http://swagger.io) or on\n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "version" : "1.0.0",
+    "title" : "Swagger Petstore",
+    "termsOfService" : "http://swagger.io/terms/",
+    "contact" : {
+      "email" : "apiteam@swagger.io"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/Linhttn1000/TravelPinWeb/1.0.0"
+  }, {
+    "url" : "https://petstore.swagger.io/v2"
+  } ],
+  "tags" : [ {
+    "name" : "TravelPinWeb",
+    "description" : "Pin Location"
+  } ],
+  "paths" : {
+    "/pins" : {
+      "post" : {
+        "tags" : [ "Create a Pin" ],
+        "summary" : "Add a new Pin",
+        "operationId" : "addPin",
+        "responses" : {
+          "200" : {
+            "description" : "savedPin"
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "Get all Pins" ],
+        "summary" : "Display Pins",
+        "operationId" : "Display Pins",
+        "responses" : {
+          "200" : {
+            "description" : "Pins"
+          },
+          "500" : {
+            "description" : "Err"
+          }
+        }
+      }
+    },
+    "/pins/user" : {
+      "delete" : {
+        "tags" : [ "Delete Pin" ],
+        "summary" : "Delete Pin by user",
+        "responses" : {
+          "200" : {
+            "description" : "Pin"
+          },
+          "500" : {
+            "description" : "Err"
+          }
+        }
+      }
+    },
+    "/user/register" : {
+      "post" : {
+        "tags" : [ "Create user" ],
+        "summary" : "Register user",
+        "responses" : {
+          "200" : {
+            "description" : "User Id"
+          },
+          "500" : {
+            "description" : "Err"
+          }
+        }
+      }
+    },
+    "/user/login" : {
+      "post" : {
+        "tags" : [ "Login" ],
+        "summary" : "Login User",
+        "responses" : {
+          "200" : {
+            "description" : "UserId , UserName"
+          }
+        }
+      }
+    }
+  }
+}
