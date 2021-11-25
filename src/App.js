@@ -6,6 +6,8 @@ import axios from "axios";
 import { format } from "timeago.js";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import "mapbox-gl/dist/mapbox-gl.css";
+import mapboxgl from "mapbox-gl";
 
 function App() {
   const myStorage = window.localStorage;
@@ -26,6 +28,10 @@ function App() {
     longitude: 106.660172,
     zoom: 4,
   });
+
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  mapboxgl.workerClass =
+    require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
   useEffect(() => {
     const getPins = async () => {
