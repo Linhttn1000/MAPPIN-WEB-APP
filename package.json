@@ -14,8 +14,7 @@
     "react-map-gl": "^5.2.5",
     "react-scripts": "^3.4.4",
     "timeago.js": "^4.0.2",
-    "web-vitals": "^1.0.1",
-    "worker-loader": "^3.0.8"
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

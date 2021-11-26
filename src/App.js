@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { Room, Star } from "@material-ui/icons";
 import "./App.css";
@@ -6,13 +6,6 @@ import axios from "axios";
 import { format } from "timeago.js";
 import Register from "./components/Register";
 import Login from "./components/Login";
-
-import ReactMapGL from "react-map-gl";
-import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass =
-  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 function App() {
   const myStorage = window.localStorage;
@@ -109,11 +102,11 @@ function App() {
         onDblClick={handleAddClick}
         transitionDuration="300"
       >
-        {pins.map((p, index) => (
+        {pins?.map((p, index) => (
           <div key={index} className="pin">
             <Marker
-              latitude={p.lat}
-              longitude={p.long}
+              latitude={p?.lat}
+              longitude={p?.long}
               offsetLeft={-viewport.zoom * 3.5}
               offsetTop={-viewport.zoom * 7}
             >
