@@ -7,6 +7,8 @@ import { format } from "timeago.js";
 import Register from "./components/Register";
 import Login from "./components/Login";
 
+const host = "https://travelmappin.herokuapp.com/api";
+
 function App() {
   const myStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"));
@@ -30,7 +32,7 @@ function App() {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const res = await axios.get("/pins");
+        const res = await axios.get(`${host}/pins`);
         setPins(res.data);
       } catch (err) {
         console.log(err);
@@ -64,7 +66,7 @@ function App() {
     };
 
     try {
-      const res = await axios.post("/pins", newPin);
+      const res = await axios.post(`${host}/pins`, newPin);
       setPins([...pins, res.data]);
       setNewPlace(null);
     } catch (error) {
@@ -81,7 +83,7 @@ function App() {
     try {
       let user = myStorage.getItem("user");
       if (pin.username === user) {
-        await axios.delete(`/pins/${user}`);
+        await axios.delete(`${host}/pins/${user}`);
         setDeletePin(true);
       } else {
         alert("Can't delete Pin!");

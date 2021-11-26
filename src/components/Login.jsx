@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import "./Login.css";
 
+const host = "https://travelmappin.herokuapp.com/api";
+
 function Login({ setShowLogin, myStorage, setCurrentUser }) {
   const [error, setError] = useState(false);
   const nameRef = useRef();
@@ -15,7 +17,7 @@ function Login({ setShowLogin, myStorage, setCurrentUser }) {
       password: passwordRef.current.value,
     };
     try {
-      const res = await axios.post("/users/login", user);
+      const res = await axios.post(`${host}/users/login`, user);
       myStorage.setItem("user", res.data.username);
       setCurrentUser(res.data.username);
       setShowLogin(false);

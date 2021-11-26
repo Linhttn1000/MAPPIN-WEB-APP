@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import "./Register.css";
 
+const host = "https://travelmappin.herokuapp.com/api";
+
 function Register({ setShowRegister }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -18,7 +20,7 @@ function Register({ setShowRegister }) {
       password: passwordRef.current.value,
     };
     try {
-      await axios.post("/users/register", newUser);
+      await axios.post(`${host}/users/register`, newUser);
       setError(false);
       setSuccess(true);
     } catch (error) {
