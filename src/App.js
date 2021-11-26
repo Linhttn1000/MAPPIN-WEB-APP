@@ -103,7 +103,7 @@ function App() {
         transitionDuration="300"
       >
         {pins &&
-          pins?.map((p, index) => (
+          pins.map((p, index) => (
             <div key={index} className="pin">
               <Marker
                 latitude={p.lat}
