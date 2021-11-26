@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { Room, Star } from "@material-ui/icons";
-import "./App?.css";
+import "./App.css";
 import axios from "axios";
 import { format } from "timeago.js";
 import Register from "./components/Register";
