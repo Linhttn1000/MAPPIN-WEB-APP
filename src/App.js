@@ -102,60 +102,63 @@ function App() {
         onDblClick={handleAddClick}
         transitionDuration="300"
       >
-        {pins?.map((p, index) => (
-          <div key={index} className="pin">
-            <Marker
-              latitude={p?.lat}
-              longitude={p?.long}
-              offsetLeft={-viewport.zoom * 3.5}
-              offsetTop={-viewport.zoom * 7}
-            >
-              <Room
-                style={{
-                  fontSize: viewport.zoom * 7,
-                  color:
-                    p.username === currentUser ? "tomato" : "rgb(236, 252, 95)",
-                  cursor: "pointer",
-                }}
-                onClick={() => handleMarketClick(p._id, p.lat, p.long)}
-              />
-            </Marker>
-            {p._id === currentPlaceId && (
-              <Popup
+        {pins &&
+          pins?.map((p, index) => (
+            <div key={index} className="pin">
+              <Marker
                 latitude={p.lat}
                 longitude={p.long}
-                closeButton={true}
-                closeOnClick={false}
-                anchor="left"
-                onClose={() => setCurrentPlaceId(null)}
+                offsetLeft={-viewport.zoom * 3.5}
+                offsetTop={-viewport.zoom * 7}
               >
-                <div className="card">
-                  <label>Place</label>
-                  <h4 className="place">{p.title}</h4>
-                  <label>Review</label>
-                  <p className="desc">{p.desc}</p>
-                  <label>Rating</label>
-                  <div className="stars">
-                    {Array(p.rating).fill(<Star className="star" />)}
+                <Room
+                  style={{
+                    fontSize: viewport.zoom * 7,
+                    color:
+                      p.username === currentUser
+                        ? "tomato"
+                        : "rgb(236, 252, 95)",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleMarketClick(p._id, p.lat, p.long)}
+                />
+              </Marker>
+              {p._id === currentPlaceId && (
+                <Popup
+                  latitude={p.lat}
+                  longitude={p.long}
+                  closeButton={true}
+                  closeOnClick={false}
+                  anchor="left"
+                  onClose={() => setCurrentPlaceId(null)}
+                >
+                  <div className="card">
+                    <label>Place</label>
+                    <h4 className="place">{p.title}</h4>
+                    <label>Review</label>
+                    <p className="desc">{p.desc}</p>
+                    <label>Rating</label>
+                    <div className="stars">
+                      {Array(p.rating).fill(<Star className="star" />)}
+                    </div>
+                    <label>Information </label>
+                    <span className="username">
+                      Created by <b>{p.username}</b>
+                    </span>
+                    <span className="date">{format(p.createdAt)}</span>
+                    <div className="buttonss">
+                      <button
+                        className="button delete"
+                        onClick={() => handleDeletePin(p)}
+                      >
+                        Delete Pin
+                      </button>
+                    </div>
                   </div>
-                  <label>Information </label>
-                  <span className="username">
-                    Created by <b>{p.username}</b>
-                  </span>
-                  <span className="date">{format(p.createdAt)}</span>
-                  <div className="buttonss">
-                    <button
-                      className="button delete"
-                      onClick={() => handleDeletePin(p)}
-                    >
-                      Delete Pin
-                    </button>
-                  </div>
-                </div>
-              </Popup>
-            )}
-          </div>
-        ))}
+                </Popup>
+              )}
+            </div>
+          ))}
         {newPlace && (
           <Popup
             latitude={newPlace.lat}
