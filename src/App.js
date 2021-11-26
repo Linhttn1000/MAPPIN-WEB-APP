@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { Room, Star } from "@material-ui/icons";
-import "./App.css";
+import "./App?.css";
 import axios from "axios";
 import { format } from "timeago.js";
 import Register from "./components/Register";
@@ -102,63 +102,62 @@ function App() {
         onDblClick={handleAddClick}
         transitionDuration="300"
       >
-        {pins &&
-          pins.map((p, index) => (
-            <div key={index} className="pin">
-              <Marker
-                latitude={p.lat}
-                longitude={p.long}
-                offsetLeft={-viewport.zoom * 3.5}
-                offsetTop={-viewport.zoom * 7}
+        {pins?.map((p, index) => (
+          <div key={index} className="pin">
+            <Marker
+              latitude={p?.lat}
+              longitude={p?.long}
+              offsetLeft={-viewport.zoom * 3.5}
+              offsetTop={-viewport.zoom * 7}
+            >
+              <Room
+                style={{
+                  fontSize: viewport.zoom * 7,
+                  color:
+                    p?.username === currentUser
+                      ? "tomato"
+                      : "rgb(236, 252, 95)",
+                  cursor: "pointer",
+                }}
+                onClick={() => handleMarketClick(p?._id, p?.lat, p?.long)}
+              />
+            </Marker>
+            {p?._id === currentPlaceId && (
+              <Popup
+                latitude={p?.lat}
+                longitude={p?.long}
+                closeButton={true}
+                closeOnClick={false}
+                anchor="left"
+                onClose={() => setCurrentPlaceId(null)}
               >
-                <Room
-                  style={{
-                    fontSize: viewport.zoom * 7,
-                    color:
-                      p.username === currentUser
-                        ? "tomato"
-                        : "rgb(236, 252, 95)",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => handleMarketClick(p._id, p.lat, p.long)}
-                />
-              </Marker>
-              {p._id === currentPlaceId && (
-                <Popup
-                  latitude={p.lat}
-                  longitude={p.long}
-                  closeButton={true}
-                  closeOnClick={false}
-                  anchor="left"
-                  onClose={() => setCurrentPlaceId(null)}
-                >
-                  <div className="card">
-                    <label>Place</label>
-                    <h4 className="place">{p.title}</h4>
-                    <label>Review</label>
-                    <p className="desc">{p.desc}</p>
-                    <label>Rating</label>
-                    <div className="stars">
-                      {Array(p.rating).fill(<Star className="star" />)}
-                    </div>
-                    <label>Information </label>
-                    <span className="username">
-                      Created by <b>{p.username}</b>
-                    </span>
-                    <span className="date">{format(p.createdAt)}</span>
-                    <div className="buttonss">
-                      <button
-                        className="button delete"
-                        onClick={() => handleDeletePin(p)}
-                      >
-                        Delete Pin
-                      </button>
-                    </div>
+                <div className="card">
+                  <label>Place</label>
+                  <h4 className="place">{p?.title}</h4>
+                  <label>Review</label>
+                  <p className="desc">{p?.desc}</p>
+                  <label>Rating</label>
+                  <div className="stars">
+                    {Array(p?.rating).fill(<Star className="star" />)}
                   </div>
-                </Popup>
-              )}
-            </div>
-          ))}
+                  <label>Information </label>
+                  <span className="username">
+                    Created by <b>{p?.username}</b>
+                  </span>
+                  <span className="date">{format(p?.createdAt)}</span>
+                  <div className="buttonss">
+                    <button
+                      className="button delete"
+                      onClick={() => handleDeletePin(p)}
+                    >
+                      Delete Pin
+                    </button>
+                  </div>
+                </div>
+              </Popup>
+            )}
+          </div>
+        ))}
         {newPlace && (
           <Popup
             latitude={newPlace.lat}
