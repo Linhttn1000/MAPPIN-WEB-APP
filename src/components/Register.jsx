@@ -12,6 +12,7 @@ function Register({ setShowRegister }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newUser = {

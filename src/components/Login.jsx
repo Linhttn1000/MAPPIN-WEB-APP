@@ -10,6 +10,8 @@ function Login({ setShowLogin, myStorage, setCurrentUser }) {
   const nameRef = useRef();
   const passwordRef = useRef();
 
+  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {

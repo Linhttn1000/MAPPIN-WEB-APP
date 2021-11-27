@@ -147,7 +147,8 @@ function App() {
                     Created by <b>{p?.username}</b>
                   </span>
                   <span className="date">{format(p?.createdAt)}</span>
-                  <div className="buttonss">
+                  {localStorage.getItem('user') === p?.username ? (
+                    <div className="buttonss">
                     <button
                       className="button delete"
                       onClick={() => handleDeletePin(p)}
@@ -155,6 +156,7 @@ function App() {
                       Delete Pin
                     </button>
                   </div>
+                  ) : (<></>)}
                 </div>
               </Popup>
             )}
@@ -189,9 +191,11 @@ function App() {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <button className="submitButton" type="submit">
+                {localStorage.getItem('user') ? (
+                  <button className="submitButton" type="submit">
                   Add New Pin
                 </button>
+                ) : (<></>)}
               </form>
             </div>
           </Popup>
@@ -202,12 +206,25 @@ function App() {
           </button>
         ) : (
           <div className="buttons">
-            <button className="button login" onClick={() => setShowLogin(true)}>
+            <button
+              className="button login"
+              onClick={() => {
+                if (showRegister) {
+                  setShowRegister(!showRegister);
+                }
+                setShowLogin(true);
+              }}
+            >
               Login
             </button>
             <button
               className="button register"
-              onClick={() => setShowRegister(true)}
+              onClick={() => {
+                if (showLogin) {
+                  setShowLogin(!showLogin);
+                }
+                setShowRegister(true);
+              }}
             >
               Register
             </button>

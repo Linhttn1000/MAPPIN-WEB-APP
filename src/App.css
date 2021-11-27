@@ -92,3 +92,8 @@ textarea::placeholder {
   top: 10px;
   right: 10px;
 }
+
+/* Map */
+.mapboxgl-popup {
+  z-index: 99;
+}
